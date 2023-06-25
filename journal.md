@@ -33,6 +33,15 @@ Some performance obtained during training
 |--|--|--|--|--|
 | 20 | Two CNN layer (16,32), dropout 0.4 | 92% | 74% ||
 | 20 | Same as above additional data augmentation | 95% | 66% ||
-| 30 | Three CNN layer (16,32, 64), dropout 0.4 | 9% | 77% | slower convergence |
+| 30 | Three CNN layer (16,32, 64), dropout 0.4 | 96% | 77% | slower convergence |
 
 Overall the performance kind of plateaus on the validation set . The original dataset is not that big: 118 pictures split 80/20 for training/validation. That could be a reason.
+
+How to improve the performance of the algorithm:
+* it'd be good to do some sanity check. Which type of image does the model fail to classify? If it fails on edge cases that might be acceptable depending on the use case
+* get more data: there are tons of cracks in roads and sidewalks in my neighborhood but I'll need to label the image myself
+* do a more thorough exploration of the hyperparameters (should probably have a validation set to make sure the performance are not skewed by training on test set)
+* use a pretrained model (transfer learning)
+
+### Using a pretrained model
+binary_classification_with_pretrained.ipynb: performance plateaus around 80% on the validation set. So, better than the simple CNN models but not by a whole lot. Bonus, it seems to avoid overfitting on the training set.
